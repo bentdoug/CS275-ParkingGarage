@@ -1,3 +1,4 @@
 # CS275-ParkingGarage
  
-Ethan Cuthbertson
+Team Members - 
+Benjamin Douglas, Arthur Artene, Ethan Cuthbertson, Connor Fitsch, Matt Smollens
