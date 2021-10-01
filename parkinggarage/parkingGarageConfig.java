@@ -60,6 +60,7 @@ public class parkingGarageConfig {
         
         /**
          * reads hourlyRate.txt and sets the hourly rate of the parking garage
+         * IMPORTANT: directory path is specific to the hard drive on which the program is saved
          */
         int hourlyRateConfig = 0;
         try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\txtfiles\\hourlyRate.txt")))) {
