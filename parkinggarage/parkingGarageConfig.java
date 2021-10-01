@@ -38,7 +38,7 @@ public class parkingGarageConfig {
         int numFloors = 0;
         int[] floorProfilesConfig = {0};
         int lineNum = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\txtfiles\\floorProfiles.txt")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\src\\txtfiles\\floorProfiles.txt")))) {
             String line;
             while ((line = br.readLine()) != null) {
             // process the line.
@@ -63,7 +63,7 @@ public class parkingGarageConfig {
          * IMPORTANT: directory path is specific to the hard drive on which the program is saved
          */
         int hourlyRateConfig = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\txtfiles\\hourlyRate.txt")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\src\\txtfiles\\hourlyRate.txt")))) {
             String line;
             while ((line = br.readLine()) != null) {
                 // process the line.
