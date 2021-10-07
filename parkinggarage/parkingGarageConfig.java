@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package parkinggarage;
 import java.util.Scanner;
 import java.io.File;
@@ -38,7 +35,7 @@ public class parkingGarageConfig {
         int numFloors = 0;
         int[] floorProfilesConfig = {0};
         int lineNum = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\src\\txtfiles\\floorProfiles.txt")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\src\\txtfiles\\config\\floorProfiles.txt")))) {
             String line;
             while ((line = br.readLine()) != null) {
             // process the line.
@@ -63,7 +60,7 @@ public class parkingGarageConfig {
          * IMPORTANT: directory path is specific to the hard drive on which the program is saved
          */
         int hourlyRateConfig = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\src\\txtfiles\\hourlyRate.txt")))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\src\\txtfiles\\config\\hourlyRate.txt")))) {
             String line;
             while ((line = br.readLine()) != null) {
                 // process the line.
@@ -83,5 +80,6 @@ public class parkingGarageConfig {
         
         ParkingGarage garage = new ParkingGarage(floorProfiles, hourlyRate);
         System.out.println(garage.toString());
+        
     }
 }

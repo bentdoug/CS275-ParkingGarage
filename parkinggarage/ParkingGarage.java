@@ -11,7 +11,7 @@ public class ParkingGarage {
      * 
      */
     private static int[] floorProfile;
-    private static int hourlyRate;
+    public static double hourlyRate = 8.25;
     
     /**
      * Instantiates the specific parking garage
@@ -38,6 +38,8 @@ public class ParkingGarage {
     }
     public static void main(String[] args) {
         // TODO code application logic here
+        checkInOut test = new checkInOut();
+        System.out.println(test.checkOut(0));
     }
     
 }
