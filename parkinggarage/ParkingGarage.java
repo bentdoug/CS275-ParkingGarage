@@ -10,7 +10,7 @@ public class ParkingGarage {
     /**
      * 
      */
-    private static int[] floorProfile;
+    public static int[] floorProfile;
     public static double hourlyRate = 8.25;
     
     /**
