@@ -1,4 +1,5 @@
 package parkinggarage;
+import parkinggarage.databaseIO;
 
 /**
  * Should I still import databaseIO? Since this is a subclass of parkingGarage, should parkingGarage import it instead?
@@ -6,27 +7,16 @@ package parkinggarage;
  * @author cuth5
  */
 
-public class OpenSpots extends ParkingGarage{
-    
-    int[] floorStatus;  //An array of numFloor cells which holds a value representing how many spots are left on each floor.
-    
-    public OpenSpots(int[] floorProfile, int hourlyRate)
+public class OpenSpots{   //Doesn't need to extend. I could call the variable floorprofile from parkinggarage if I need it.
+
+    private int[] refreshOpenSpots()   //Should garageStatus be changed to databaseIO.getParkingStatus?
     {
-        super(floorProfile, hourlyRate);    //Calls constructor on ParkingGarage.
-        this.floorStatus = new int[floorProfile.length];
-    }
-    
-    private int[] getOpenSpots()
-    {
-        return this.floorStatus;
-    }
-    
-    //int[] garageStatus represents the total number of cars on each floor.
-    private void refreshOpenSpots(int[] garageStatus)   //Should garageStatus be changed to databaseIO.getParkingStatus?
-    {
+        int[] garageStatus = databaseIO.getParkingStatus();
+        int[] openSpots = new int[garageStatus.length];
         for(int i = 0; i < garageStatus.length; i++)
         {
-            this.floorStatus[i] = floorProfile[i] - garageStatus[i];   //If static status gets removed from floorProfile, this should be updated to this.floorProfile[i].
+            openSpots[i] = ParkingGarage.floorProfile[i] - garageStatus[i];   //If static status gets removed from floorProfile, this should be updated to this.floorProfile[i].
         }
+        return openSpots;
     }      
 }
