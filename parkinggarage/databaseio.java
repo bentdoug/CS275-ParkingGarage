@@ -23,12 +23,16 @@ public class dataBaseIo {
         //stores the customer id and time they came in
     }
 
-    public void getUsedIDs() {
+    public int[] getUsedIDs() {
         //returns an array of id numbers that are currently available to be assigned to customers
+        int[] UsedIDs = checkInOut.used;
+        return UsedIDs;
     }
 
-    public void getUnusedIDs() {
+    public int[] getUnusedIDs() {
         //returns an array of id numbers in use and id numbers not in use and rewrites them to the appropriate flat file
+        int[] UnusedIDs = checkInOut.unused;
+        return UnusedIDs;
    }
 
    public void returnUsedUnusedIDs(used, unused) {
