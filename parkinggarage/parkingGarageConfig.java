@@ -71,7 +71,7 @@ public class parkingGarageConfig {
     }
     
     public static void main(String[] args) throws IOException{
-        config();
+        /*config();
         
         for(int x = 0; x<floorProfiles.length; x++){
             System.out.println(floorProfiles[x]);
@@ -80,6 +80,9 @@ public class parkingGarageConfig {
         
         ParkingGarage garage = new ParkingGarage(floorProfiles, hourlyRate);
         System.out.println(garage.toString());
+        */
         
+        String filePath = new File("").getAbsolutePath();
+        System.out.print(filePath);
     }
 }
