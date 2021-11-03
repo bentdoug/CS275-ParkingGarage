@@ -1,8 +1,9 @@
 
 package parkinggarage;
-import parkinggarage.ParkingGarage;
-import parkinggarage.databaseIO;
+import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  * checkInOut is the class housing the programs that are utilized when a customer checks
  * in or out.
@@ -38,7 +39,11 @@ public class checkInOut{
         int id = getIdNumber();
         Date date = new Date();
         long time = date.getTime();
-        //databaseIO.newCar(id, time);
+        try {
+            databaseio.newCar(id, time);
+        } catch (IOException ex) {
+            Logger.getLogger(checkInOut.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Object[] ret = new Object[]{id, time};
         return ret;
     }
@@ -122,7 +127,7 @@ public class checkInOut{
         return charge;
     }
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         /**System.out.println("Beginning getIdNumber test");
         //testing getIdNumber
         for(int x = 0; x<5; x++){
@@ -134,8 +139,11 @@ public class checkInOut{
         System.out.println("$" + hourlyParking(2));
         */
         
-        Object[] returned = checkIn();
-        System.out.println(returned[0]);
-        System.out.println(returned[1]);
+        /*Object[] print;
+        print = checkIn();
+        System.out.println(print[0] + " " + print[1]);*/
+        System.out.println(databaseio.getTimeIn(0));
+        System.out.println(databaseio.getTimeIn(1));
+        System.out.println(databaseio.getTimeIn(2));
     }
 }
