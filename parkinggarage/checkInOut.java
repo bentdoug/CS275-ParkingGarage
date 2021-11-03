@@ -1,5 +1,6 @@
 
 package parkinggarage;
+import java.io.IOException;
 import parkinggarage.ParkingGarage;
 //import parkinggarage.databaseio;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class checkInOut{
      * @return - returns customers Id, time they arrived to the GUI, and the floor
      * they chose to park on
      */
-    public static Object[] checkIn(){
+    public static Object[] checkIn() throws IOException{
         int id = getIdNumber();
         Date date = new Date();
         long time = date.getTime();
@@ -49,10 +50,10 @@ public class checkInOut{
      * @param unused list of ID numbers that are not in use
      * @return ID number assigned to customer checking in right now
      */
-    public static int getIdNumber(){
-        //int[] used = databaseIO.getUsedIDs();
+    public static int getIdNumber() throws IOException{
+        int[] used = databaseio.getUsedIDs();
         
-        //int[] unused = databaseIO.getUnusedIDs();
+        int[] unused = databaseio.getUnusedIDs();
         
         int[] tempUsed = new int[used.length+1];
         int[] tempUnused = new int[unused.length-1];
@@ -94,7 +95,7 @@ public class checkInOut{
      * @return - returns the charge due from the customer at the time of exiting 
      * the garage
      */
-    public double checkOut(int numRecieved){
+    public double checkOut(int numRecieved) throws IOException{
         double charge = 0;
         int numDigits = Integer.toString(numRecieved).length();
         
@@ -107,10 +108,10 @@ public class checkInOut{
         return charge;
     }
     
-    private static double hourlyParking(int Id){
+    private static double hourlyParking(int Id) throws IOException{
         double charge = 0;
-        //long timeIn = databaseIO.getTimeIn(Id);
-        long timeIn = 1633625627268L;
+        long timeIn = Long.parseLong(databaseio.getTimeIn(Id));
+        //long timeIn = 1633625627268L;
         Date date = new Date();
         long timeOut = date.getTime();
         long difference = timeOut-timeIn;
