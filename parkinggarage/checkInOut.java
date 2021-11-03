@@ -1,7 +1,7 @@
 
 package parkinggarage;
 import parkinggarage.ParkingGarage;
-import parkinggarage.databaseIO;
+//import parkinggarage.databaseio;
 import java.util.Date;
 /**
  * checkInOut is the class housing the programs that are utilized when a customer checks
