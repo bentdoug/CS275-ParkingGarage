@@ -24,7 +24,7 @@ public class databaseio {
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\timesIn.txt";
         Writer output;
         output = new BufferedWriter(new FileWriter(filePath, true));
-        output.append("\n" + id + " " + time);
+        output.append(id + " " + time + "\n");
         output.close();
     }
 
@@ -42,9 +42,10 @@ public class databaseio {
         while((strLine = br.readLine()) != null){
             String[] line = strLine.split(" ");
             UnusedIDs[ctr] = Integer.parseInt(line[0]);
+            ctr++;
             }
         int[] ret = new int[ctr];
-        for(int x = 0; x<=ctr; x++){
+        for(int x = 0; x<ctr; x++){
             ret[x] = UnusedIDs[x];
         }
         return ret;
@@ -63,17 +64,19 @@ public class databaseio {
         
         //read the file line by line
         while((strLine = br.readLine()) != null){
-            String[] line = strLine.split(" ");
-            UsedIDs[ctr] = Integer.parseInt(line[0]);
+            String line = strLine; //.split(" ");
+            UsedIDs[ctr] = Integer.parseInt(line);
+            System.out.println(UsedIDs[ctr]);
+            ctr++;
             }
         int[] ret = new int[ctr];
-        for(int x = 0; x<=ctr; x++){
+        for(int x = 0; x<ctr; x++){
             ret[x] = UsedIDs[x];
         }
         return ret;
     }
 
-   public void returnUsedUnusedIDs(int[] used, int[] unused) throws FileNotFoundException, IOException {
+   public static void returnUsedUnusedIDs(int[] used, int[] unused) throws FileNotFoundException, IOException {
         //receives an updated array of id numbers in use and id numbers not in use and re-writes them to the
          //appropriate flat file
         
@@ -81,16 +84,16 @@ public class databaseio {
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
         Writer output;
-        output = new BufferedWriter(new FileWriter(filePath, true));
+        output = new BufferedWriter(new FileWriter(filePath, false));
         for(int x = 0; x<used.length; x++){
-            output.write(used[x] + "\n");
+            output.append(used[x] + "\n");
         }
         output.close();
         
         /** Unused**/
         filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
         stream = new FileInputStream(filePath);
-        output = new BufferedWriter(new FileWriter(filePath, true));
+        output = new BufferedWriter(new FileWriter(filePath, false));
         for(int x = 0; x<unused.length; x++){
             output.write(unused[x] + "\n");
         }
