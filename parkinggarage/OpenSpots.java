@@ -1,5 +1,5 @@
 package parkinggarage;
-import parkinggarage.databaseIO;
+import parkinggarage.databaseio;
 
 /**
  * Should I still import databaseIO? Since this is a subclass of parkingGarage, should parkingGarage import it instead?
@@ -11,7 +11,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
 
     private int[] refreshOpenSpots()   //Should garageStatus be changed to databaseIO.getParkingStatus?
     {
-        int[] garageStatus = databaseIO.getParkingStatus();
+        int[] garageStatus = databaseio.getParkingStatus();
         int[] openSpots = new int[garageStatus.length];
         for(int i = 0; i < garageStatus.length; i++)
         {

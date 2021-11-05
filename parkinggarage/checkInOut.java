@@ -1,7 +1,8 @@
 
 package parkinggarage;
+import java.io.IOException;
 import parkinggarage.ParkingGarage;
-import parkinggarage.databaseIO;
+//import parkinggarage.databaseio;
 import java.util.Date;
 /**
  * checkInOut is the class housing the programs that are utilized when a customer checks
@@ -34,11 +35,11 @@ public class checkInOut{
      * @return - returns customers Id, time they arrived to the GUI, and the floor
      * they chose to park on
      */
-    public static Object[] checkIn(){
+    public static Object[] checkIn() throws IOException{
         int id = getIdNumber();
         Date date = new Date();
         long time = date.getTime();
-        //databaseIO.newCar(id, time);
+        databaseio.newCar(id, time);
         Object[] ret = new Object[]{id, time};
         return ret;
     }
@@ -49,38 +50,30 @@ public class checkInOut{
      * @param unused list of ID numbers that are not in use
      * @return ID number assigned to customer checking in right now
      */
-    public static int getIdNumber(){
-        //int[] used = databaseIO.getUsedIDs();
-        
-        //int[] unused = databaseIO.getUnusedIDs();
-        
+    public static int getIdNumber() throws IOException{
+        /**Get Used and Unused arrays from DB**/
+        int[] used = databaseio.getUsedIDs();
+        int[] unused = databaseio.getUnusedIDs();
+        /**Create tempUsed and tempUnused (new/edited used & unused)**/
         int[] tempUsed = new int[used.length+1];
         int[] tempUnused = new int[unused.length-1];
         int id = unused[0];
-        
+        /**Fill tempUnused with all unused except the first one (the ID)**/
         for(int x = 1; x<unused.length; x++){
             tempUnused[x-1] = unused[x];
         }
+        /**Fill tempUsed with all used including the ID**/
         for(int x = 0; x<used.length; x++){
             tempUsed[x] = used[x];
         }
         tempUsed[tempUsed.length-1] = id;
-        //System.out.print("used ");
-        for(int x = 0; x<tempUsed.length; x++){
-            //System.out.print(tempUsed[x]+", ");
-        }
-        //System.out.print("\nunused ");
-        for(int x = 0; x<tempUnused.length; x++){
-            //System.out.print(tempUnused[x]+", ");
-        }
-        
-        
-        used = tempUsed;
-        unused = tempUnused;
-        //databaseIO.returnUsedUnusedIDs(tempUsed, tempUnused);
+        /**Return updated arrays to DB**/
+        databaseio.returnUsedUnusedIDs(tempUsed, tempUnused);
         
         return id;
     }
+    
+    
     
     
     
@@ -94,7 +87,7 @@ public class checkInOut{
      * @return - returns the charge due from the customer at the time of exiting 
      * the garage
      */
-    public double checkOut(int numRecieved){
+    public static double checkOut(int numRecieved) throws IOException{
         double charge = 0;
         int numDigits = Integer.toString(numRecieved).length();
         
@@ -103,26 +96,27 @@ public class checkInOut{
         }
         else{
             charge = hourlyParking(numRecieved);
+            //returnIdNumber(numRecieved);
         }
+        
         return charge;
     }
     
-    private static double hourlyParking(int Id){
+    private static double hourlyParking(int Id) throws IOException{
         double charge = 0;
-        //long timeIn = databaseIO.getTimeIn(Id);
-        long timeIn = 1633625627268L;
+        long timeIn = Long.parseLong(databaseio.getTimeIn(Id));
+        //long timeIn = 1633625627268L;
         Date date = new Date();
         long timeOut = date.getTime();
         long difference = timeOut-timeIn;
         long minutesInside = difference/60000;
         System.out.println(minutesInside+" minutes inside");
-        System.out.println((double)minutesInside/60);
         double timeCharged = (double)minutesInside/60;
         charge = (double)timeCharged*ParkingGarage.hourlyRate; //hourlyRate is currently hard coded to 8.25
         return charge;
     }
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
         /**System.out.println("Beginning getIdNumber test");
         //testing getIdNumber
         for(int x = 0; x<5; x++){
@@ -134,8 +128,12 @@ public class checkInOut{
         System.out.println("$" + hourlyParking(2));
         */
         
-        Object[] returned = checkIn();
-        System.out.println(returned[0]);
+        double charge = checkOut(7);
+        System.out.println(charge);
+        /**Object[] returned = checkIn();
+        System.out.println("ID,Time:");
+        System.out.print(returned[0]+", ");
         System.out.println(returned[1]);
+        **/
     }
 }

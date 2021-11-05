@@ -1,7 +1,7 @@
 package parkinggarage;
 import java.io.*;
 
-public class dataBaseIo {
+public class databaseio {
 
 
     public static void demoReadFile(String[] args) throws IOException {
@@ -19,29 +19,106 @@ public class dataBaseIo {
         }
         in.close();
     }
-    public void newCar(id,time) {
+    public static void newCar(int id, long time) throws IOException {
         //stores the customer id and time they came in
+        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\timesIn.txt";
+        Writer output;
+        output = new BufferedWriter(new FileWriter(filePath, true));
+        output.append(id + " " + time + "\n");
+        output.close();
     }
 
-    public int[] getUsedIDs() {
+    public static int[] getUnusedIDs() throws FileNotFoundException, IOException {
         //returns an array of id numbers that are currently available to be assigned to customers
-        int[] UsedIDs = checkInOut.used;
-        return UsedIDs;
+        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
+        FileInputStream stream = new FileInputStream(filePath);
+        DataInputStream in = new DataInputStream(stream);
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        String strLine;
+        int[] UnusedIDs = new int[500];
+        int ctr = 0;
+        
+        //read the file line by line
+        while((strLine = br.readLine()) != null){
+            String[] line = strLine.split(" ");
+            UnusedIDs[ctr] = Integer.parseInt(line[0]);
+            ctr++;
+            }
+        int[] ret = new int[ctr];
+        for(int x = 0; x<ctr; x++){
+            ret[x] = UnusedIDs[x];
+        }
+        return ret;
+        
     }
 
-    public int[] getUnusedIDs() {
+    public static int[] getUsedIDs() throws FileNotFoundException, IOException {
         //returns an array of id numbers in use and id numbers not in use and rewrites them to the appropriate flat file
-        int[] UnusedIDs = checkInOut.unused;
-        return UnusedIDs;
-   }
+        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
+        FileInputStream stream = new FileInputStream(filePath);
+        DataInputStream in = new DataInputStream(stream);
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        String strLine;
+        int[] UsedIDs = new int[500];
+        int ctr = 0;
+        
+        //read the file line by line
+        while((strLine = br.readLine()) != null){
+            String line = strLine; //.split(" ");
+            UsedIDs[ctr] = Integer.parseInt(line);
+            System.out.println(UsedIDs[ctr]);
+            ctr++;
+            }
+        int[] ret = new int[ctr];
+        for(int x = 0; x<ctr; x++){
+            ret[x] = UsedIDs[x];
+        }
+        return ret;
+    }
 
-   public void returnUsedUnusedIDs(used, unused) {
+   public static void returnUsedUnusedIDs(int[] used, int[] unused) throws FileNotFoundException, IOException {
         //receives an updated array of id numbers in use and id numbers not in use and re-writes them to the
          //appropriate flat file
+        
+        /** Used**/
+        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
+        FileInputStream stream = new FileInputStream(filePath);
+        Writer output;
+        output = new BufferedWriter(new FileWriter(filePath, false));
+        for(int x = 0; x<used.length; x++){
+            output.append(used[x] + "\n");
+        }
+        output.close();
+        
+        /** Unused**/
+        filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
+        stream = new FileInputStream(filePath);
+        output = new BufferedWriter(new FileWriter(filePath, false));
+        for(int x = 0; x<unused.length; x++){
+            output.write(unused[x] + "\n");
+        }
+        output.close();
+        
    }
 
-   public void getTimeIn(Id) {
+   public static String getTimeIn(int id) throws FileNotFoundException, IOException {
         //recieves the customers id and returns the time they entered the parking garage
+        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\timesIn.txt";
+        FileInputStream stream = new FileInputStream(filePath);
+        DataInputStream in = new DataInputStream(stream);
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        String strLine;
+        String strId = Integer.toString(id);
+        
+        //read the file line by line
+        while((strLine = br.readLine()) != null){
+            String[] line = strLine.split(" ");
+            if(line[0].equals(strId)){
+                return line[1];
+            }
+        }
+        in.close();
+        return null;
    }
 
     public static int[] getParkingStatus(){
