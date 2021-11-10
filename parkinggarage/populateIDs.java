@@ -30,4 +30,5 @@ public class populateIDs {
             output.append(x+1 + "\n");
         }
         output.close();
+    }
 }

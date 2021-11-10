@@ -100,6 +100,14 @@ public class databaseio {
         output.close();
         
    }
+   
+   /**
+    * removes a used ID from UsedIDs and puts it back into UnusedIDs for reassignment to a new customer
+    * @param id the ID that is no longer being used
+    */
+   public static void returnUsed(int id){
+       
+   }
 
    public static String getTimeIn(int id) throws FileNotFoundException, IOException {
         //recieves the customers id and returns the time they entered the parking garage

@@ -97,9 +97,9 @@ public class checkInOut{
         }
         else{
             charge = hourlyParking(numRecieved);
-            //returnIdNumber(numRecieved);
+            databaseio.returnUsed(numRecieved);
         }
-        
+
         return charge;
     }
     
