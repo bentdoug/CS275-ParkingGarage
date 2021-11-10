@@ -129,9 +129,27 @@ public class databaseio {
         return null;
    }
 
-    public static int[] getParkingStatus(){
-
-        return new int[0];
+    public static boolean getParkingStatus() throws FileNotFoundException, IOException {
+        //Written by Ethan Cuthbertson
+        //Returns a boolean which represents wheter or not the parking garage is full
+        
+        String source = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\currentGarageStatus.txt";
+        FileInputStream inStream = new FileInputStream(source);
+        DataInputStream daStream = new DataInputStream(inStream);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
+        int spotsTaken;
+        boolean isFull = true;
+        
+        int i = 0;      
+        while(i < ParkingGarage.floorProfile.length && isFull == false) {
+            spotsTaken = reader.read();
+            if(spotsTaken < ParkingGarage.floorProfile[i]) {
+                isFull = false;
+            }
+            i++;
+        }
+        daStream.close();
+        return isFull;
     }
 
 }
