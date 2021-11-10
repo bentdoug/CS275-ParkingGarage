@@ -1,10 +1,6 @@
 
 package parkinggarage;
-import java.util.Scanner;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
@@ -35,7 +31,8 @@ public class parkingGarageConfig {
         int numFloors = 0;
         int[] floorProfilesConfig = {0};
         int lineNum = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\src\\txtfiles\\config\\floorProfiles.txt")))) {
+        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\config\\floorProfiles.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(new File(filePath)))) {
             String line;
             while ((line = br.readLine()) != null) {
             // process the line.
@@ -82,7 +79,5 @@ public class parkingGarageConfig {
         System.out.println(garage.toString());
         */
         
-        String filePath = new File("").getAbsolutePath();
-        System.out.print(filePath);
     }
 }
