@@ -78,6 +78,5 @@ public class parkingGarageConfig {
         ParkingGarage garage = new ParkingGarage(floorProfiles, hourlyRate);
         System.out.println(garage.toString());
         */
-        
     }
 }
