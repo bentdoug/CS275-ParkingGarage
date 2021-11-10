@@ -81,7 +81,8 @@ public class parkingGarageConfig {
         ParkingGarage garage = new ParkingGarage(floorProfiles, hourlyRate);
         System.out.println(garage.toString());
         */
-        
+        config();
+        ParkingGarage Garage = new ParkingGarage(floorProfiles, hourlyRate);
         String filePath = new File("").getAbsolutePath();
         System.out.print(filePath);
     }
