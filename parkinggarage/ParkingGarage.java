@@ -1,6 +1,10 @@
 
 package parkinggarage;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author btdou
@@ -37,9 +41,16 @@ public class ParkingGarage {
         return ret;
     }
     public static void main(String[] args) {
-        // TODO code application logic here
-        checkInOut test = new checkInOut();
-        System.out.println(test.checkOut(0));
+        newGUI GUI = new newGUI();
+        GUI.show();
+        
+        try {
+            // TODO code application logic here
+            checkInOut test = new checkInOut();
+            System.out.println(test.checkOut(0));
+        } catch (IOException ex) {
+            Logger.getLogger(ParkingGarage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

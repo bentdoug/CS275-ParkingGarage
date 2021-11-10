@@ -4,7 +4,11 @@
  * and open the template in the editor.
  */
 package parkinggarage;
-import parkinggarage.checkInOut.checkOut;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static parkinggarage.checkInOut.checkOut;
+
 /**
  *
  * @author aa
@@ -85,17 +89,14 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel3.setText("Invalid Code");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 460, 310, 60));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 470, 750, 60));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 255, 51));
-        jLabel4.setText("Code Accepted");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 470, 360, 50));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 470, 440, 50));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 255, 51));
-        jLabel5.setText("Amount Due:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 540, 420, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkinggarage/Lit1j8.jpg"))); // NOI18N
@@ -105,7 +106,7 @@ public class CheckOut extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       newGUI jf1 = new newGUI();
+       Password jf1 = new Password();
        jf1.show();
        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -113,14 +114,18 @@ public class CheckOut extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
              String textFieldValue = jTextField1.getText();
                     if (checkCode(textFieldValue)) {
-                       int id = Integer.parseInt(textFieldValue);
-                       double amountDue = checkOut(id);
-                    jLabel4.setText("Code accepted");
-                    jLabel4.setVisible(true);
-                    jLabel5.setVisible(true);
-                    jLabel5.setText("Price"+amountDue);
-                    jLabel3.setVisible(false);
-                    String code = textFieldValue;
+                 try {
+                     int id = Integer.parseInt(textFieldValue);
+                     double amountDue = checkOut(id);
+                     jLabel4.setText("Code accepted");
+                     jLabel4.setVisible(true);
+                     jLabel5.setVisible(true);
+                     jLabel5.setText("Price"+amountDue);
+                     jLabel3.setVisible(false);
+                     String code = textFieldValue;
+                 } catch (IOException ex) {
+                     Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+                 }
                     
                 } else {
                     jLabel3.setText("Invalid Code. Try again");    
