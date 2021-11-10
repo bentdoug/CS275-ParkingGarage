@@ -2,7 +2,6 @@
 package parkinggarage;
 
 import java.io.IOException;
-
 /**
  *
  * @author btdou
@@ -38,10 +37,17 @@ public class ParkingGarage {
         ret += "The hourly rate for parking here is $" + hourlyRate;
         return ret;
     }
-    public static void main(String[] args) throws IOException {
-        // TODO code application logic here
-        checkInOut test = new checkInOut();
-        System.out.println(test.checkOut(0));
+    public static void main(String[] args) {
+        newGUI GUI = new newGUI();
+        GUI.show();
+        
+        try {
+            // TODO code application logic here
+            checkInOut test = new checkInOut();
+            System.out.println(test.checkOut(0));
+        } catch (IOException ex) {
+            Logger.getLogger(ParkingGarage.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
