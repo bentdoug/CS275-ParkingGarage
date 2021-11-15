@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 package parkinggarage;
 import java.io.*;
@@ -154,6 +155,8 @@ public class databaseio {
     }
 
 =======
+=======
+>>>>>>> parent of 00176f9 ()
 package parkinggarage;
 import java.io.*;
 
@@ -176,7 +179,10 @@ public class databaseio {
         in.close();
     }
     public static void newCar(int id, long time) throws IOException {
+<<<<<<< HEAD
         log.log("Starting newCar()");
+=======
+>>>>>>> parent of 00176f9 ()
         //stores the customer id and time they came in
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\timesIn.txt";
         Writer output;
@@ -186,7 +192,10 @@ public class databaseio {
     }
 
     public static int[] getUnusedIDs() throws FileNotFoundException, IOException {
+<<<<<<< HEAD
         log.log("Starting getUnusedIDs()");
+=======
+>>>>>>> parent of 00176f9 ()
         //returns an array of id numbers that are currently available to be assigned to customers
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
@@ -211,7 +220,10 @@ public class databaseio {
     }
 
     public static int[] getUsedIDs() throws FileNotFoundException, IOException {
+<<<<<<< HEAD
         log.log("Starting getUsedIDs()");
+=======
+>>>>>>> parent of 00176f9 ()
         //returns an array of id numbers in use and id numbers not in use and rewrites them to the appropriate flat file
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
@@ -238,7 +250,11 @@ public class databaseio {
    public static void returnUsedUnusedIDs(int[] used, int[] unused) throws FileNotFoundException, IOException {
         //receives an updated array of id numbers in use and id numbers not in use and re-writes them to the
          //appropriate flat file
+<<<<<<< HEAD
         log.log("Starting returnUsedUnusedIDs()");
+=======
+        
+>>>>>>> parent of 00176f9 ()
         /** Used**/
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
@@ -264,6 +280,7 @@ public class databaseio {
     * removes a used ID from UsedIDs and puts it back into UnusedIDs for reassignment to a new customer
     * @param id the ID that is no longer being used
     */
+<<<<<<< HEAD
    public static void returnUsed(int id) throws FileNotFoundException, IOException{
        log.log("Starting returnUsed()");
        /** Used**/
@@ -346,6 +363,13 @@ public class databaseio {
 
    public static String getTimeIn(int id) throws FileNotFoundException, IOException {
         log.log("Starting getTimeIn()");
+=======
+   public static void returnUsed(int id){
+       
+   }
+
+   public static String getTimeIn(int id) throws FileNotFoundException, IOException {
+>>>>>>> parent of 00176f9 ()
         //recieves the customers id and returns the time they entered the parking garage
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\timesIn.txt";
         FileInputStream stream = new FileInputStream(filePath);
@@ -370,5 +394,8 @@ public class databaseio {
         return new int[0];
     }
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> parent of 00176f9 ()
 }
