@@ -89,15 +89,15 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 51));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 470, 750, 60));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 480, 630, 110));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 255, 51));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 470, 440, 50));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 470, 640, 100));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 255, 51));
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 540, 420, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 610, 570, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkinggarage/Lit1j8.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
