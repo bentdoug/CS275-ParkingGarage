@@ -36,6 +36,7 @@ public class checkInOut{
      * they chose to park on
      */
     public static Object[] checkIn() throws IOException{
+        log.log("Starting checkIn()");
         int id = getIdNumber();
         Date date = new Date();
         long time = date.getTime();
@@ -52,6 +53,7 @@ public class checkInOut{
      * @return ID number assigned to customer checking in right now
      */
     public static int getIdNumber() throws IOException{
+        log.log("Starting getIdNumber()");
         /**Get Used and Unused arrays from DB**/
         int[] used = databaseio.getUsedIDs();
         int[] unused = databaseio.getUnusedIDs();
@@ -89,6 +91,7 @@ public class checkInOut{
      * the garage
      */
     public static double checkOut(int numRecieved) throws IOException{
+        log.log("Starting checkOut()");
         double charge = 0;
         int numDigits = Integer.toString(numRecieved).length();
         
@@ -104,6 +107,7 @@ public class checkInOut{
     }
     
     private static double hourlyParking(int Id) throws IOException{
+        log.log("Starting hourlyParking()");
         double charge = 0;
         long timeIn = Long.parseLong(databaseio.getTimeIn(Id));
         //long timeIn = 1633625627268L;
@@ -111,7 +115,7 @@ public class checkInOut{
         long timeOut = date.getTime();
         long difference = timeOut-timeIn;
         long minutesInside = difference/60000;
-        System.out.println(minutesInside+" minutes inside");
+        //System.out.println(minutesInside+" minutes inside");
         double timeCharged = (double)minutesInside/60;
         charge = (double)timeCharged*ParkingGarage.hourlyRate; //hourlyRate is currently hard coded to 8.25
         return charge;
@@ -128,13 +132,10 @@ public class checkInOut{
         //testing hourlyParking
         System.out.println("$" + hourlyParking(2));
         */
+        Object[] returned = checkIn();
         
-        double charge = checkOut(7);
-        System.out.println(charge);
-        /**Object[] returned = checkIn();
-        System.out.println("ID,Time:");
-        System.out.print(returned[0]+", ");
-        System.out.println(returned[1]);
-        **/
+        
+        checkOut(1);
+        
     }
 }
