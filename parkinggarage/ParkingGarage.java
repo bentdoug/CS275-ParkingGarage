@@ -2,8 +2,6 @@
 package parkinggarage;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 /**
  *
  * @author btdou
@@ -25,8 +23,6 @@ public class ParkingGarage {
     public ParkingGarage(int[] floorProfile, int hourlyRate){
         this.floorProfile = floorProfile;
         this.hourlyRate = hourlyRate;
-        newGUI GUI = new newGUI();
-        GUI.show();
     }
     
     @Override
