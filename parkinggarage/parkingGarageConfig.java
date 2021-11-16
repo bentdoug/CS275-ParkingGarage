@@ -57,8 +57,8 @@ public class parkingGarageConfig {
          * IMPORTANT: directory path is specific to the hard drive on which the program is saved
          */
         int hourlyRateConfig = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(new File("D:\\Fall 2021 Semester\\Software Engineering\\ParkingGarage\\src\\txtfiles\\config\\hourlyRate.txt")))) {
-            String line;
+        String filePath2 = new File("").getAbsolutePath() + "\\src\\txtfiles\\config\\hourlyRate.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(new File(filePath2)))) {    String line;
             while ((line = br.readLine()) != null) {
                 // process the line.
                 hourlyRateConfig = Integer.parseInt(line);
@@ -68,9 +68,9 @@ public class parkingGarageConfig {
     }
     
     public static void main(String[] args) throws IOException{
-        /*config();
-        
-        for(int x = 0; x<floorProfiles.length; x++){
+        config();
+        ParkingGarage Garage = new ParkingGarage(floorProfiles, hourlyRate);
+        /**for(int x = 0; x<floorProfiles.length; x++){
             System.out.println(floorProfiles[x]);
         }
         System.out.println(hourlyRate);
@@ -78,5 +78,6 @@ public class parkingGarageConfig {
         ParkingGarage garage = new ParkingGarage(floorProfiles, hourlyRate);
         System.out.println(garage.toString());
         */
+        
     }
 }

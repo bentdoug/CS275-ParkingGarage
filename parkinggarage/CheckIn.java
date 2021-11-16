@@ -7,6 +7,7 @@ package parkinggarage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static parkinggarage.checkInOut.checkIn;
 import static parkinggarage.checkInOut.getIdNumber;
 /**
  *
@@ -74,8 +75,9 @@ public class CheckIn extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            int returned = getIdNumber();
-            String id = String.valueOf(returned);
+             Object[] returned = checkIn();
+            String id;
+            id = returned[0].toString();
             jLabel2.setText("Your code is");
             jLabel3.setText(id);
             jLabel2.setVisible(true);

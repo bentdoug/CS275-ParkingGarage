@@ -23,7 +23,6 @@ public class CheckOut extends javax.swing.JFrame {
     }
     public static boolean checkCode(String code) {
         boolean isValid = false;
-        if (!code.equals("booty")) {
             if (code.length() <= 4) {
                 for (int i = 0; i < code.length(); i++) {
                     if (code.charAt(i) == '0' || code.charAt(i) == '1' || code.charAt(i) == '2' || code.charAt(i) == '3' || code.charAt(i) == '4' || code.charAt(i) == '5' || code.charAt(i) == '6' || code.charAt(i) == '7' || code.charAt(i) == '8' || code.charAt(i) == '9') {
@@ -36,9 +35,6 @@ public class CheckOut extends javax.swing.JFrame {
             } else {
                 isValid = false;
             }
-        } else {
-            isValid = true;
-        }
         return isValid;
     }
     /**
@@ -89,15 +85,15 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 51));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 480, 630, 110));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 480, 610, 110));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 255, 51));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 470, 640, 100));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 470, 550, 100));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 255, 51));
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 610, 570, 110));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 570, 440, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkinggarage/Lit1j8.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -120,7 +116,7 @@ public class CheckOut extends javax.swing.JFrame {
                      jLabel4.setText("Code accepted");
                      jLabel4.setVisible(true);
                      jLabel5.setVisible(true);
-                     jLabel5.setText("Price"+amountDue);
+                     jLabel5.setText("Amount due $"+ Math.ceil(amountDue));
                      jLabel3.setVisible(false);
                      String code = textFieldValue;
                  } catch (IOException ex) {

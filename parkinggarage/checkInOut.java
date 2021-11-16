@@ -100,7 +100,7 @@ public class checkInOut{
         }
         else{
             charge = hourlyParking(numRecieved);
-            databaseio.returnUsed(numRecieved);
+            //databaseio.returnUsed(numRecieved);
         }
 
         return charge;
