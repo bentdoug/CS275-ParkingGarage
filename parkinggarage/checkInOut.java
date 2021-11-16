@@ -55,8 +55,8 @@ public class checkInOut{
     public static int getIdNumber() throws IOException{
         log.log("Starting getIdNumber()");
         /**Get Used and Unused arrays from DB**/
-        int[] used = databaseio.getUsedIDs();
-        int[] unused = databaseio.getUnusedIDs();
+        int[] used = databaseioIDs.getUsedIDs();
+        int[] unused = databaseioIDs.getUnusedIDs();
         /**Create tempUsed and tempUnused (new/edited used & unused)**/
         int[] tempUsed = new int[used.length+1];
         int[] tempUnused = new int[unused.length-1];
@@ -71,7 +71,7 @@ public class checkInOut{
         }
         tempUsed[tempUsed.length-1] = id;
         /**Return updated arrays to DB**/
-        databaseio.returnUsedUnusedIDs(tempUsed, tempUnused);
+        databaseioIDs.returnUsedUnusedIDs(tempUsed, tempUnused);
         
         return id;
     }
