@@ -116,8 +116,11 @@ public class checkInOut{
         long difference = timeOut-timeIn;
         long minutesInside = difference/60000;
         //System.out.println(minutesInside+" minutes inside");
-        double timeCharged = (double)minutesInside/60;
+        int timeCharged = (int)minutesInside/60;
         charge = (double)timeCharged*ParkingGarage.hourlyRate; //hourlyRate is currently hard coded to 8.25
+        if(charge < ParkingGarage.hourlyRate){
+            charge = ParkingGarage.hourlyRate;
+        }
         return charge;
     }
     
