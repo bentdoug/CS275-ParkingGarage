@@ -40,7 +40,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         boolean isFull = true;
         
         int i = 0;      
-        while(i < ParkingGarage.floorProfile.length && isFull == false) {
+        while(i < ParkingGarage.floorProfile.length && isFull == true) {
             spotsTaken = reader.read();
             if(spotsTaken < ParkingGarage.floorProfile[i]) {
                 isFull = false;
