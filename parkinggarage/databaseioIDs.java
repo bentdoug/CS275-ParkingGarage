@@ -70,7 +70,7 @@ public class databaseioIDs {
    public static void returnUsedUnusedIDs(int[] used, int[] unused) throws FileNotFoundException, IOException {
         //receives an updated array of id numbers in use and id numbers not in use and re-writes them to the
          //appropriate flat file
-        log.log("Starting returnUsedUnusedIDs()");
+        log.log("Starting returnUsedUnusedIDs() \n Starting to work on Used IDs");
         /** Used**/
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
@@ -80,7 +80,7 @@ public class databaseioIDs {
             output.append(used[x] + "\n");
         }
         output.close();
-        
+        log.log("Starting to work on Unused IDs");
         /** Unused**/
         filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
         stream = new FileInputStream(filePath);
@@ -97,7 +97,7 @@ public class databaseioIDs {
     * @param id the ID that is no longer being used
     */
    public static void returnUsed(int id) throws FileNotFoundException, IOException{
-       log.log("Starting returnUsed()");
+       log.log("Starting returnUsed() \n Starting to work on UsedID list");
        /** Used**/
         String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
@@ -118,9 +118,20 @@ public class databaseioIDs {
             }
         int[] newUsed = new int[ctr-1];
         //transfers UsedIDs into newUsed - leaves out the ID that is no longer used
-        for(int x = 0; x<ctr-1; x++){
-            if(UsedIDs[x]!=id){
-                newUsed[x] = UsedIDs[x];
+        //base case
+        int oldList = 0;
+        int newList = 0;
+        if(UsedIDs[0]==id){
+            oldList++;
+        }
+        while(newList<ctr-1){
+            if(UsedIDs[oldList]!=id){
+                newUsed[newList] = UsedIDs[oldList];
+                oldList++;
+                newList++;
+            }
+            else{
+                oldList++;
             }
         }
         
@@ -128,10 +139,12 @@ public class databaseioIDs {
         Writer output;
         output = new BufferedWriter(new FileWriter(filePath, false));
         for(int x = 0; x<newUsed.length; x++){
-            output.write(String.valueOf(newUsed[x]) + "\n");
+            if(newUsed[x] != 0){
+                output.write(String.valueOf(newUsed[x]) + "\n");
+            }
         }
         output.close();
-        /**
+        log.log("Starting to work on UnusedID list");
         //Adds the newly UnusedID to the list of Unused IDs
         String filePath2 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
         FileInputStream stream2 = new FileInputStream(filePath2);
@@ -142,7 +155,7 @@ public class databaseioIDs {
         int ctr2 = 0;
         
         //read the UnusedIDs into the UnusedIDs array
-        while((strLine2 = br.readLine()) != null){
+        while((strLine2 = br2.readLine()) != null){
             UnusedIDs[ctr2] = Integer.parseInt(strLine2);
             ctr2++;
             }
@@ -152,27 +165,38 @@ public class databaseioIDs {
         //placing newly UnusedID into array in numerical order (least -> most)
         boolean placed = false;
         int y;
-        
+        int index = 0;
         //base case
         if(id<UnusedIDs[0]){
             newUnused[0] = id;
             placed = true;
-        }
-        int index = 0;
-        while(!placed && index < newUnused.length){
-            if(UnusedIDs[index]<id){
-                newUnused[index] = UnusedIDs[index];                
-            }
+            index++;
         }
         
-        /** Unused**//**
+        while(!placed && index < newUnused.length){
+            if(UnusedIDs[index]<id){
+                newUnused[index] = UnusedIDs[index];
+                index++;
+            }
+            else{
+                newUnused[index] = id;
+                placed = true;
+                index++;
+            }
+        }
+        while(placed && index < newUnused.length){
+            newUnused[index] = UnusedIDs[index-1];
+            index++;
+        }
+        
+        /** Unused**/
         output = new BufferedWriter(new FileWriter(filePath2, false));
         for(int x = 0; x<newUnused.length; x++){
-            System.out.println(newUnused[x]);
+            
             output.write(newUnused[x] + "\n");
         }
         output.close();
-        **/
+        
         
    }
 
