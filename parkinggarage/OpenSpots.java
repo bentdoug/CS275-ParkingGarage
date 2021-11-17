@@ -37,10 +37,11 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         DataInputStream daStream = new DataInputStream(inStream);
         BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
         int spotsTaken;
+        int numFloors = reader.read();
         boolean isFull = true;
         
         int i = 0;      
-        while(i < ParkingGarage.floorProfile.length && isFull == true) {
+        while(i < numFloors && isFull == true) {
             spotsTaken = reader.read();
             if(spotsTaken < ParkingGarage.floorProfile[i]) {
                 isFull = false;
