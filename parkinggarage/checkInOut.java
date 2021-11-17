@@ -102,7 +102,7 @@ public class checkInOut{
             charge = hourlyParking(numRecieved);
             databaseioIDs.returnUsed(numRecieved);
         }
-
+        databaseioTimes.removeTimeIn(numRecieved);
         return charge;
     }
     
