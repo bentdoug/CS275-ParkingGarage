@@ -54,7 +54,7 @@ public class CheckIn extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 380, 510, 130));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 400, 510, 130));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 200)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
