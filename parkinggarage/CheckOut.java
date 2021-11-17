@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static parkinggarage.checkInOut.checkOut;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -71,8 +73,8 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Enter Code");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 170, 270, -1));
+        jLabel2.setText("Enter Parking Spot");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 170, 450, -1));
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jButton2.setText("Submit");
@@ -93,7 +95,7 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 255, 51));
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 570, 440, 110));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 570, 550, 110));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkinggarage/Lit1j8.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -116,7 +118,7 @@ public class CheckOut extends javax.swing.JFrame {
                      jLabel4.setText("Code accepted");
                      jLabel4.setVisible(true);
                      jLabel5.setVisible(true);
-                     jLabel5.setText("Amount due $"+ Math.ceil(amountDue));
+                     jLabel5.setText("Amount due $"+ String.format("%.2f", Math.ceil(amountDue)));
                      jLabel3.setVisible(false);
                      String code = textFieldValue;
                  } catch (IOException ex) {
