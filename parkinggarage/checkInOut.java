@@ -100,9 +100,9 @@ public class checkInOut{
         }
         else{
             charge = hourlyParking(numRecieved);
-            //databaseio.returnUsed(numRecieved);
+            databaseioIDs.returnUsed(numRecieved);
         }
-
+        databaseioTimes.removeTimeIn(numRecieved);
         return charge;
     }
     
@@ -135,10 +135,10 @@ public class checkInOut{
         //testing hourlyParking
         System.out.println("$" + hourlyParking(2));
         */
-        Object[] returned = checkIn();
+        //Object[] returned = checkIn();
         
         
-        checkOut(1);
+        checkOut(8);
         
     }
 }
