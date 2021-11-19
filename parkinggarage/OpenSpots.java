@@ -51,4 +51,26 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         daStream.close();
         return isFull;
     }
+    
+    public static int getNumOpenSpots() throws FileNotFoundException, IOException {
+    //Written by Ethan Cuthbertson
+    //Returns a boolean which represents wheter or not the parking garage is full
+        
+        String source = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\currentGarageStatus.txt";
+        FileInputStream inStream = new FileInputStream(source);
+        DataInputStream daStream = new DataInputStream(inStream);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
+        int spotsTaken;
+        int numFloors = reader.read();
+        int totalOpenSpots = 0;
+            
+        for(int i = 0; i < numFloors; i++) {
+            spotsTaken = reader.read();
+            if(spotsTaken < ParkingGarage.floorProfile[i]) {
+                totalOpenSpots += ParkingGarage.floorProfile[i] - spotsTaken;
+            }
+        }
+        daStream.close();
+        return totalOpenSpots;
+    }
 }
