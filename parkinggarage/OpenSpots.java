@@ -61,7 +61,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         DataInputStream daStream = new DataInputStream(inStream);
         BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
         int spotsTaken;
-        int numFloors = parkinggarage.floorProfile[0];
+        int numFloors = ParkingGarage.floorProfile[0];
         int totalOpenSpots = 0;
             
         for(int i = 1; i <= numFloors; i++) {
