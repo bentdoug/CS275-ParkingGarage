@@ -37,13 +37,13 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         DataInputStream daStream = new DataInputStream(inStream);
         BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
         int spotsTaken;
-        int numFloors = parkinggarage.floorProfile[0];
+        int numFloors = ParkingGarage.floorProfile[0];
         boolean isFull = true;
         
         int i = 1;      
         while(i <= numFloors && isFull == true) {
             spotsTaken = Integer.parseInt(reader.readLine());
-            if(spotsTaken < parkinggarage.floorProfile[i]) {
+            if(spotsTaken < ParkingGarage.floorProfile[i]) {
                 isFull = false;
             }
             i++;
@@ -66,7 +66,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
             
         for(int i = 1; i <= numFloors; i++) {
             spotsTaken = Integer.parseInt(reader.readLine());
-            if(spotsTaken < parkinggarage.floorProfile[i]) {
+            if(spotsTaken < ParkingGarage.floorProfile[i]) {
                 totalOpenSpots += parkinggarage.floorProfile[i] - spotsTaken;
             }
         }
@@ -94,7 +94,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
     /*
       11/21/21
       Ethan Cuthbertson: Fixed four glitches
-      1. In the code's body, there was improper capitilization, as parkinggarage was written as "ParkingGarage".
+      1. WRONG THIS WAS CORRECT IN THE FIRST PLACE In the code's body, there was improper capitilization, as parkinggarage was written as "ParkingGarage".
       2. I mistook the first line of currentGarageStatus.txt as the line which stores the number of floors instead of the first line of floorProfiles.
       3. Given the above mistake, the use of indexes represented by "int i" was all mixed up and incorrect.
       4. By using the BufferedReader method "read()" I was getting incorrect numbers. I know use "readLine" then convert it from String to int.
