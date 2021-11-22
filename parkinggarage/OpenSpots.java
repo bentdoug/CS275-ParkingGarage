@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import parkinggarage.databaseio;
+
 
 /**
  * Should I still import databaseIO? Since this is a subclass of parkingGarage, should parkingGarage import it instead?
@@ -37,13 +37,13 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         DataInputStream daStream = new DataInputStream(inStream);
         BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
         int spotsTaken;
-        int numFloors = parkinggarage.floorProfile[0];
+        int numFloors = ParkingGarage.floorProfile[0];
         boolean isFull = true;
         
         int i = 1;      
         while(i <= numFloors && isFull == true) {
             spotsTaken = Integer.parseInt(reader.readLine());
-            if(spotsTaken < parkinggarage.floorProfile[i]) {
+            if(spotsTaken < ParkingGarage.floorProfile[i]) {
                 isFull = false;
             }
             i++;
@@ -61,13 +61,13 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         DataInputStream daStream = new DataInputStream(inStream);
         BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
         int spotsTaken;
-        int numFloors = parkinggarage.floorProfile[0];
+        int numFloors = ParkingGarage.floorProfile[0];
         int totalOpenSpots = 0;
             
         for(int i = 1; i <= numFloors; i++) {
             spotsTaken = Integer.parseInt(reader.readLine());
-            if(spotsTaken < parkinggarage.floorProfile[i]) {
-                totalOpenSpots += parkinggarage.floorProfile[i] - spotsTaken;
+            if(spotsTaken < ParkingGarage.floorProfile[i]) {
+                totalOpenSpots += ParkingGarage.floorProfile[i] - spotsTaken;
             }
         }
         daStream.close();
