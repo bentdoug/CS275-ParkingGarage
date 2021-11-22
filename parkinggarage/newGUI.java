@@ -46,7 +46,7 @@ public class newGUI extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 346, 135));
 
-        jButton3.setText("CheckOut");
+        jButton3.setText("Check Out");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
