@@ -25,19 +25,19 @@ public class databaseioTimes {
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
         
-        int[][] timesIn = new int[500][2];
+        float[][] timesIn = new float[500][2];
         //Amount of times read from file into the array
         int ctr = 0;
         
         //read used times into timesIn
         while((strLine = br.readLine()) != null){
             String[] line = strLine.split(" ");
-            timesIn[ctr][0] = Integer.parseInt(line[0]);
-            timesIn[ctr][1] = Integer.parseInt(line[1]);
+            timesIn[ctr][0] = Float.parseFloat(line[0]);
+            timesIn[ctr][1] = Float.parseFloat(line[1]);
             ctr++;
         }
         
-        int[][] updatedTimes = new int[ctr-1][2];
+        float[][] updatedTimes = new float[ctr-1][2];
         int OldList = 0;
         int NewList = 0;
         while(NewList<ctr-1){

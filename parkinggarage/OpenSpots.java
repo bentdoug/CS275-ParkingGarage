@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import parkinggarage.databaseio;
+
 
 /**
  * Should I still import databaseIO? Since this is a subclass of parkingGarage, should parkingGarage import it instead?
@@ -67,7 +67,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         for(int i = 1; i <= numFloors; i++) {
             spotsTaken = Integer.parseInt(reader.readLine());
             if(spotsTaken < ParkingGarage.floorProfile[i]) {
-                totalOpenSpots += parkinggarage.floorProfile[i] - spotsTaken;
+                totalOpenSpots += ParkingGarage.floorProfile[i] - spotsTaken;
             }
         }
         daStream.close();
@@ -94,7 +94,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
     /*
       11/21/21
       Ethan Cuthbertson: Fixed four glitches
-      1. WRONG THIS WAS CORRECT IN THE FIRST PLACE In the code's body, there was improper capitilization, as parkinggarage was written as "ParkingGarage".
+      1. In the code's body, there was improper capitilization, as parkinggarage was written as "ParkingGarage".
       2. I mistook the first line of currentGarageStatus.txt as the line which stores the number of floors instead of the first line of floorProfiles.
       3. Given the above mistake, the use of indexes represented by "int i" was all mixed up and incorrect.
       4. By using the BufferedReader method "read()" I was getting incorrect numbers. I know use "readLine" then convert it from String to int.
