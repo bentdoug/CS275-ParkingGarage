@@ -37,13 +37,13 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         DataInputStream daStream = new DataInputStream(inStream);
         BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
         int spotsTaken;
-        int numFloors = reader.read();
+        int numFloors = parkinggarage.floorProfile[0];
         boolean isFull = true;
         
-        int i = 0;      
-        while(i < numFloors && isFull == true) {
-            spotsTaken = reader.read();
-            if(spotsTaken < ParkingGarage.floorProfile[i]) {
+        int i = 1;      
+        while(i <= numFloors && isFull == true) {
+            spotsTaken = Integer.parseInt(reader.readLine());
+            if(spotsTaken < parkinggarage.floorProfile[i]) {
                 isFull = false;
             }
             i++;
@@ -54,23 +54,49 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
     
     public static int getNumOpenSpots() throws FileNotFoundException, IOException {
     //Written by Ethan Cuthbertson
-    //Returns a boolean which represents wheter or not the parking garage is full
+    //Returns an int which tell how many open spots are left in the whole parking garage
         
         String source = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\currentGarageStatus.txt";
         FileInputStream inStream = new FileInputStream(source);
         DataInputStream daStream = new DataInputStream(inStream);
         BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
         int spotsTaken;
-        int numFloors = reader.read();
+        int numFloors = parkinggarage.floorProfile[0];
         int totalOpenSpots = 0;
             
-        for(int i = 0; i < numFloors; i++) {
-            spotsTaken = reader.read();
-            if(spotsTaken < ParkingGarage.floorProfile[i]) {
-                totalOpenSpots += ParkingGarage.floorProfile[i] - spotsTaken;
+        for(int i = 1; i <= numFloors; i++) {
+            spotsTaken = Integer.parseInt(reader.readLine());
+            if(spotsTaken < parkinggarage.floorProfile[i]) {
+                totalOpenSpots += parkinggarage.floorProfile[i] - spotsTaken;
             }
         }
         daStream.close();
         return totalOpenSpots;
     }
+    
+    // Do a PSVM and try to fix
+    public static void main (String[] args) throws FileNotFoundException, IOException {
+        String source = new File("").getAbsolutePath() + "\\src\\ParkingGarage\\CS275-ParkingGarage\\txtfiles\\database\\currentGarageStatus.txt";
+        System.out.println(source);
+        FileInputStream inStream = new FileInputStream(source);
+        DataInputStream daStream = new DataInputStream(inStream);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(daStream));
+
+        for(int i = 0; i < 4; i++)
+        {
+            //String curLine = reader.readLine();
+            int toOutput = Integer.parseInt(reader.readLine());
+            System.out.println(toOutput);
+        }
+        daStream.close();
+    }
+    
+    /*
+      11/21/21
+      Ethan Cuthbertson: Fixed four glitches
+      1. In the code's body, there was improper capitilization, as parkinggarage was written as "ParkingGarage".
+      2. I mistook the first line of currentGarageStatus.txt as the line which stores the number of floors instead of the first line of floorProfiles.
+      3. Given the above mistake, the use of indexes represented by "int i" was all mixed up and incorrect.
+      4. By using the BufferedReader method "read()" I was getting incorrect numbers. I know use "readLine" then convert it from String to int.
+    */
 }
