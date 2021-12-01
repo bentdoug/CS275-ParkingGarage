@@ -19,31 +19,37 @@ public class databaseioTimes {
     public static void removeTimeIn(int id) throws IOException{
         log.log("Starting removeTimeIn");
        /** Used**/
-        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\timesIn.txt";
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/timesIn.txt";
         FileInputStream stream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(stream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
         String strLine;
         
-        float[][] timesIn = new float[500][2];
+        /** Pair of Arrays; ID has the customer IDs while times in
+            stores the corresponding timesIn for those IDs **/
+        int[] IDs = new int[500];
+        Long[] timesIn = new Long[500];
         //Amount of times read from file into the array
         int ctr = 0;
         
         //read used times into timesIn
         while((strLine = br.readLine()) != null){
             String[] line = strLine.split(" ");
-            timesIn[ctr][0] = Float.parseFloat(line[0]);
-            timesIn[ctr][1] = Float.parseFloat(line[1]);
+            IDs[ctr] = Integer.parseInt(line[0]);
+            timesIn[ctr] = Long.parseLong(line[1]);
             ctr++;
         }
         
-        float[][] updatedTimes = new float[ctr-1][2];
+        
+        int[] updatedIDs = new int[ctr-1];
+        Long[] updatedTimes = new Long[ctr-1];
+        
         int OldList = 0;
         int NewList = 0;
         while(NewList<ctr-1){
-            if(timesIn[OldList][0] != id){
-                updatedTimes[NewList][0] = timesIn[OldList][0];
-                updatedTimes[NewList][1] = timesIn[OldList][1];
+            if(IDs[OldList] != id){
+                updatedIDs[NewList] = IDs[OldList];
+                updatedTimes[NewList] = timesIn[OldList];
                 OldList++;
                 NewList++;
             }
@@ -54,7 +60,7 @@ public class databaseioTimes {
         Writer output;
         output = new BufferedWriter(new FileWriter(filePath, false));
         for(int x = 0; x<updatedTimes.length; x++){
-            output.append(updatedTimes[x][0] + " " + updatedTimes[x][1] + "\n");
+            output.append(updatedIDs[x] + " " + updatedTimes[x] + "\n");
         }
         output.close();
         
