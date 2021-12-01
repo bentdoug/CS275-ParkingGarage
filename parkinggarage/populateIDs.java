@@ -23,7 +23,7 @@ public class populateIDs {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String args[]) throws FileNotFoundException, IOException {
-        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/UnusedIDs.txt";
         Writer output;
         output = new BufferedWriter(new FileWriter(filePath, false));
         for(int x = 0; x<250; x++){

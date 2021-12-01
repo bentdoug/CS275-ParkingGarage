@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static parkinggarage.checkInOut.checkIn;
 import static parkinggarage.checkInOut.getIdNumber;
+import org.netbeans.lib.awtextra;
 /**
  *
  * @author aa

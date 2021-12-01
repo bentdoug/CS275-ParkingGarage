@@ -20,7 +20,7 @@ public class databaseioIDs {
     public static int[] getUnusedIDs() throws FileNotFoundException, IOException {
          log.log("Starting getUnusedIDs()");
         //returns an array of id numbers that are currently available to be assigned to customers
-        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/UnusedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(stream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -45,7 +45,7 @@ public class databaseioIDs {
     public static int[] getUsedIDs() throws FileNotFoundException, IOException {
         log.log("Starting getUsedIDs()");
         //returns an array of id numbers in use and id numbers not in use and rewrites them to the appropriate flat file
-        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/UsedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(stream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -57,7 +57,7 @@ public class databaseioIDs {
         while((strLine = br.readLine()) != null){
             String line = strLine; //.split(" ");
             UsedIDs[ctr] = Integer.parseInt(line);
-            System.out.println(UsedIDs[ctr]);
+            //System.out.println(UsedIDs[ctr]);
             ctr++;
             }
         int[] ret = new int[ctr];
@@ -72,7 +72,7 @@ public class databaseioIDs {
          //appropriate flat file
         log.log("Starting returnUsedUnusedIDs() \n Starting to work on Used IDs");
         /** Used**/
-        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/UsedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
         Writer output;
         output = new BufferedWriter(new FileWriter(filePath, false));
@@ -82,7 +82,7 @@ public class databaseioIDs {
         output.close();
         log.log("Starting to work on Unused IDs");
         /** Unused**/
-        filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
+        filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/UnusedIDs.txt";
         stream = new FileInputStream(filePath);
         output = new BufferedWriter(new FileWriter(filePath, false));
         for(int x = 0; x<unused.length; x++){
@@ -99,7 +99,7 @@ public class databaseioIDs {
    public static void returnUsed(int id) throws FileNotFoundException, IOException{
        log.log("Starting returnUsed() \n Starting to work on UsedID list");
        /** Used**/
-        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/UsedIDs.txt";
         FileInputStream stream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(stream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -146,7 +146,7 @@ public class databaseioIDs {
         output.close();
         log.log("Starting to work on UnusedID list");
         //Adds the newly UnusedID to the list of Unused IDs
-        String filePath2 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
+        String filePath2 = new File("").getAbsolutePath() + "/src/txtfiles/database/UnusedIDs.txt";
         FileInputStream stream2 = new FileInputStream(filePath2);
         DataInputStream in2 = new DataInputStream(stream2);
         BufferedReader br2 = new BufferedReader(new InputStreamReader(in2));

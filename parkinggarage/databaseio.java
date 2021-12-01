@@ -22,16 +22,17 @@ public class databaseio {
     public static void newCar(int id, long time) throws IOException {
         log.log("Starting newCar()");
         //stores the customer id and time they came in
-        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\timesIn.txt";
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/timesIn.txt";
         Writer output;
         output = new BufferedWriter(new FileWriter(filePath, true));
+        System.out.println("Time = "+time);
         output.append(id + " " + time + "\n");
         output.close();
     }
 
    public static String getTimeIn(int id) throws FileNotFoundException, IOException {
         //recieves the customers id and returns the time they entered the parking garage
-        String filePath = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\timesIn.txt";
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/timesIn.txt";
         FileInputStream stream = new FileInputStream(filePath);
         DataInputStream in = new DataInputStream(stream);
         BufferedReader br = new BufferedReader(new InputStreamReader(in));

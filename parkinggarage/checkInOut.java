@@ -1,7 +1,6 @@
 
 package parkinggarage;
 import java.io.IOException;
-import parkinggarage.ParkingGarage;
 //import parkinggarage.databaseio;
 import java.util.Date;
 /**
@@ -40,6 +39,7 @@ public class checkInOut{
         int id = getIdNumber();
         Date date = new Date();
         long time = date.getTime();
+        System.out.println("time = " + time);
         databaseio.newCar(id, time);
         Object[] ret = new Object[]{id, time};
         return ret;
@@ -92,6 +92,7 @@ public class checkInOut{
      */
     public static double checkOut(int numRecieved) throws IOException{
         log.log("Starting checkOut()");
+        System.out.println("Starting Checkout");
         double charge = 0;
         int numDigits = Integer.toString(numRecieved).length();
         
@@ -109,7 +110,9 @@ public class checkInOut{
     private static double hourlyParking(int Id) throws IOException{
         log.log("Starting hourlyParking()");
         double charge = 0;
-        long timeIn = Long.parseLong(databaseio.getTimeIn(Id));
+        System.out.println("In hourly parking");
+        String dbTime = databaseio.getTimeIn(Id);
+        long timeIn = Long.parseLong(dbTime);
         //long timeIn = 1633625627268L;
         Date date = new Date();
         long timeOut = date.getTime();
@@ -135,10 +138,10 @@ public class checkInOut{
         //testing hourlyParking
         System.out.println("$" + hourlyParking(2));
         */
-        //Object[] returned = checkIn();
+        Object[] returned = checkIn();
+        System.out.println("ID = " + returned[0] + " Time in = "+ returned[1]);
         
-        
-        checkOut(8);
+        checkOut(1);
         
     }
 }
