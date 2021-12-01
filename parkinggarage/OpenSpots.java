@@ -30,13 +30,15 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
     
     public static boolean getParkingStatus() throws FileNotFoundException, IOException {
     //Written by Ethan Cuthbertson
-    //Returns a boolean which represents wheter or not the parking garage is full
+    //Returns a boolean which represents whether or not the parking garage is full.
+    //True means the garage is full. False means the garage is not full.
         
-        String source1 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\currentGarageStatus.txt";
+        String source1 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
         FileInputStream inStream1 = new FileInputStream(source1);
         DataInputStream daStream1 = new DataInputStream(inStream1);
         BufferedReader reader1 = new BufferedReader(new InputStreamReader(daStream1));
         
+        /*
         String source2 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\currentGarageStatus.txt";
         FileInputStream inStream2 = new FileInputStream(source2);
         DataInputStream daStream2 = new DataInputStream(inStream2);
@@ -54,8 +56,11 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
             }
             i++;
         }
+        */
+        
+        boolean isFull = (reader1.readLine() == null);
         daStream1.close();
-        daStream2.close();
+        //daStream2.close();
         return isFull;
     }
     
@@ -63,8 +68,8 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
     //Written by Ethan Cuthbertson
     //Returns an int which tell how many open spots are left in the whole parking garage
         
-        String source1 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\currentGarageStatus.txt";
-        //THIS VERSION WORKS FOR ETHAN (Who has messed up package organization) String source1 = new File("").getAbsolutePath() + "\\src\\ParkingGarage\\CS275-ParkingGarage\\txtfiles\\database\\currentGarageStatus.txt";
+        String source1 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
+        //THIS VERSION WORKS FOR ETHAN (Who has messed up package organization) String source1 = new File("").getAbsolutePath() + "\\src\\ParkingGarage\\CS275-ParkingGarage\\txtfiles\\database\\UsedIDs.txt";
         FileInputStream inStream1 = new FileInputStream(source1);
         DataInputStream daStream1 = new DataInputStream(inStream1);
         BufferedReader reader1 = new BufferedReader(new InputStreamReader(daStream1));
@@ -75,17 +80,26 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
         DataInputStream daStream2 = new DataInputStream(inStream2);
         BufferedReader reader2 = new BufferedReader(new InputStreamReader(daStream2));
         
-        int spotsTaken;
         int numFloors = Integer.parseInt(reader2.readLine());
-        int totalOpenSpots = 0;
-            
+        int totalSpots = 0;
+        for(int i = 0; i < numFloors; i++) {
+            int intFloorSpots = Integer.parseInt(reader2.readLine());
+            totalSpots += intFloorSpots;
+        }
+        
+        int totalOpenSpots = totalSpots;
+        
+        while(reader1.readLine() != null) {
+            totalOpenSpots--;
+        }
+        /*
         for(int i = 1; i <= numFloors; i++) {
             spotsTaken = Integer.parseInt(reader1.readLine());
             int curFloor = Integer.parseInt(reader2.readLine());
             if(spotsTaken < curFloor) {
                 totalOpenSpots += curFloor - spotsTaken;
             }
-        }
+        }*/
         daStream1.close();
         daStream2.close();
         return totalOpenSpots;
@@ -106,6 +120,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
             System.out.println(toOutput);
         }
         daStream.close();*/
+        System.out.println(getParkingStatus());
         System.out.println(getNumOpenSpots());
     }
     
