@@ -1,0 +1,6 @@
+Starting checkOut()
+Starting hourlyParking()
+Starting returnUsed() 
+ Starting to work on UsedID list
+Starting to work on UnusedID list
+Starting removeTimeIn

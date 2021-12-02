@@ -9,7 +9,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static parkinggarage.checkInOut.checkIn;
 import static parkinggarage.checkInOut.getIdNumber;
-import org.netbeans.lib.awtextra;
 /**
  *
  * @author aa
@@ -20,13 +19,14 @@ public class CheckIn extends javax.swing.JFrame {
      * Creates new form CheckIn
      */
     public CheckIn() {
-        //try {
+        try {
             initComponents();
-            //int availableSpots = OpenSpots.getNumOpenSpots();
-            //System.out.println();
-        //} catch (IOException ex) {
-            //Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
-        //}
+            int availableSpots = OpenSpots.getNumOpenSpots();
+            System.out.println(availableSpots);
+            jLabel5.setText("Number of spots available " + availableSpots + "/275");
+        } catch (IOException ex) {
+            Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -100,6 +100,9 @@ public class CheckIn extends javax.swing.JFrame {
             jLabel2.setText("Your parking spot is");
             jLabel3.setText(id);
             jLabel2.setVisible(true);
+            int availableSpots = OpenSpots.getNumOpenSpots();
+            System.out.println(availableSpots);
+            jLabel5.setText("Number of spots available " + availableSpots + "/275");
         } catch (IOException ex) {
             Logger.getLogger(CheckIn.class.getName()).log(Level.SEVERE, null, ex);
         }
