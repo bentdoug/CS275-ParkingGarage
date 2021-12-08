@@ -33,7 +33,7 @@ public class OpenSpots{   //Doesn't need to extend. I could call the variable fl
     //Returns a boolean which represents whether or not the parking garage is full.
     //True means the garage is full. False means the garage is not full.
         
-        String source1 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UsedIDs.txt";
+        String source1 = new File("").getAbsolutePath() + "\\src\\txtfiles\\database\\UnusedIDs.txt";
         FileInputStream inStream1 = new FileInputStream(source1);
         DataInputStream daStream1 = new DataInputStream(inStream1);
         BufferedReader reader1 = new BufferedReader(new InputStreamReader(daStream1));
