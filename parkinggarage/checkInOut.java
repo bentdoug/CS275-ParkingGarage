@@ -1,8 +1,19 @@
 
 package parkinggarage;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 //import parkinggarage.databaseio;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+import java.text.SimpleDateFormat; 
 /**
  * checkInOut is the class housing the programs that are utilized when a customer checks
  * in or out.
@@ -126,7 +137,44 @@ public class checkInOut{
         }
         return charge;
     }
+    public static boolean isTimeIn(int Id) throws FileNotFoundException, IOException{
+        String filePath = new File("").getAbsolutePath() + "/src/txtfiles/database/timesIn.txt";
+        FileInputStream stream = new FileInputStream(filePath);
+        DataInputStream in = new DataInputStream(stream);
+        BufferedReader br = new BufferedReader(new InputStreamReader(in));
+        String strLine;
+        String strId = Integer.toString(Id);
+        
+        //read the file line by line
+        while((strLine = br.readLine()) != null){
+            String[] line = strLine.split(" ");
+            if(line[0].equals(strId)){
+                return true;
+            }
+        }
+        in.close();
+        return false;
+    }
+    public static String timeIn(int Id)throws IOException{
+        String java_date = "";
+        try {
+            String dbTime = databaseio.getTimeIn(Id);
+            long timeIn = Long.parseLong(dbTime);
+            Date date = new Date();
+            SimpleDateFormat jdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+            java_date = jdf.format(date);
+        } catch (IOException ex) {
+            Logger.getLogger(checkInOut.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return java_date;
+        
+    }
     
+     private static LocalDateTime timeOut(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");  
+        LocalDateTime now = LocalDateTime.now();  
+        return(now);
+    }
     public static void main(String[] args) throws IOException{
         /**System.out.println("Beginning getIdNumber test");
         //testing getIdNumber

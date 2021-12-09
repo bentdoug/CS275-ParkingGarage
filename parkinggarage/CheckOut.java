@@ -8,9 +8,14 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static parkinggarage.checkInOut.checkOut;
+import static parkinggarage.checkInOut.timeIn;
+
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import org.xml.sax.Attributes;
+import javafx.scene.control.TextField;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;
 /**
  *
  * @author aa
@@ -22,21 +27,19 @@ public class CheckOut extends javax.swing.JFrame {
      */
     public CheckOut() {
         initComponents();
+           DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+           LocalDateTime now = LocalDateTime.now();  
+           jLabel6.setText("Check Out Time: " + dtf.format(now));  
+        
     }
-    public static boolean checkCode(String code) {
+    public static boolean checkCode(String code) throws IOException {
         boolean isValid = false;
-            if (code.length() <= 4) {
-                for (int i = 0; i < code.length(); i++) {
-                    if (code.charAt(i) == '0' || code.charAt(i) == '1' || code.charAt(i) == '2' || code.charAt(i) == '3' || code.charAt(i) == '4' || code.charAt(i) == '5' || code.charAt(i) == '6' || code.charAt(i) == '7' || code.charAt(i) == '8' || code.charAt(i) == '9') {
-                        isValid = true;
-                    } else {
-                        isValid = false;
-                        break;
-                    }
-                }
-            } else {
-                isValid = false;
-            }
+        if(code.equals("")){
+            isValid=false;
+        }else{
+        int id = Integer.parseInt(code);
+        isValid=checkInOut.isTimeIn(id);
+        }
         return isValid;
     }
     /**
@@ -55,11 +58,15 @@ public class CheckOut extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Setup");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +83,9 @@ public class CheckOut extends javax.swing.JFrame {
         jLabel2.setText("Enter Parking Spot");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 170, 450, -1));
 
+        jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Submit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,15 +96,25 @@ public class CheckOut extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 51, 51));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 480, 610, 110));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 470, 610, 110));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 255, 51));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 470, 550, 100));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 470, 480, 100));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 255, 51));
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 570, 550, 110));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 560, 640, 110));
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Check Out Time:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 700, 720, 80));
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Check In Time:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 780, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/parkinggarage/Lit1j8.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -110,27 +129,36 @@ public class CheckOut extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-             String textFieldValue = jTextField1.getText();
-                    if (checkCode(textFieldValue)) {
-                 try {
-                     int id = Integer.parseInt(textFieldValue);
-                     double amountDue = checkOut(id);
-                     jLabel4.setText("Code accepted");
-                     jLabel4.setVisible(true);
-                     jLabel5.setVisible(true);
-                     jLabel5.setText("Amount due $"+ String.format("%.2f", amountDue));
-                     jLabel3.setVisible(false);
-                     String code = textFieldValue;
-                 } catch (IOException ex) {
-                     Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
-                 }
-                    
-                } else {
-                    jLabel3.setText("Invalid Code. Try again");    
-                    jLabel4.setVisible(false);
-                    jLabel5.setVisible(false);
-                    jLabel3.setVisible(true);
+        try {
+            String textFieldValue = jTextField1.getText();
+            
+            if (checkCode(textFieldValue)) {
+                try {
+                    int id = Integer.parseInt(textFieldValue);
+                    String formattedTimeIn = checkInOut.timeIn(id);
+                    jLabel7.setText("Check In Time: " +formattedTimeIn);
+                    double amountDue = checkOut(id);
+                    jLabel4.setText("Code accepted");
+                    jLabel4.setVisible(true);
+                    jLabel5.setVisible(true);
+                    jLabel5.setText("Amount due $"+ String.format("%.2f", amountDue));
+                    jLabel3.setVisible(false);
+                    jTextField1.setText("");
+                } catch (IOException ex) {
+                    Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                
+            } else {
+                jLabel3.setText("Invalid Code. Try again");
+                jLabel7.setText("Check In Time: ");
+                jTextField1.setText("");
+                jLabel4.setVisible(false);
+                jLabel5.setVisible(false);
+                jLabel3.setVisible(true);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CheckOut.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -176,6 +204,8 @@ public class CheckOut extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
