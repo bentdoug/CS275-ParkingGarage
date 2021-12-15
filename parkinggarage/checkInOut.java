@@ -160,7 +160,7 @@ public class checkInOut{
         try {
             String dbTime = databaseio.getTimeIn(Id);
             long timeIn = Long.parseLong(dbTime);
-            Date date = new Date();
+            Date date = new Date(timeIn);
             SimpleDateFormat jdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");
             java_date = jdf.format(date);
         } catch (IOException ex) {

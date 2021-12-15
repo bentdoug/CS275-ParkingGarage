@@ -1,8 +1,0 @@
-Starting checkIn()
-Starting getIdNumber()
-Starting getUsedIDs()
-Starting getUnusedIDs()
-Starting returnUsedUnusedIDs() 
- Starting to work on Used IDs
-Starting to work on Unused IDs
-Starting newCar()

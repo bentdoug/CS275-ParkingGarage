@@ -26,7 +26,7 @@ public class Password extends javax.swing.JFrame {
     }
      public static boolean checkCode(String code) {
         boolean isValid = false;
-        if (!code.equals("password")) {
+        if (!code.equals("yes")) {
            isValid = false;
         } else {
             isValid = true;
